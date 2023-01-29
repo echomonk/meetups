@@ -5,11 +5,11 @@ function AllMeetupsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedMeetups, setLoadedMeetups] = useState([]);
 
+  const firebaseURL = process.env.REACT_APP_FIREBASE_URL;
+
   useEffect(() => {
     setIsLoading(true);
-    fetch(
-      "https://react-meetups-941e9-default-rtdb.europe-west1.firebasedatabase.app/meetups.json"
-    )
+    fetch(`${firebaseURL}meetups.json`)
       .then((response) => {
         return response.json();
       })

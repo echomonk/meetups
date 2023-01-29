@@ -3,18 +3,15 @@ import NewMeetupForm from "../components/layout/meetups/NewMeetupForm";
 
 function NewMeetupsPage() {
   const history = useHistory();
-
+  const firebaseURL = process.env.REACT_APP_FIREBASE_URL;
   function handleAddMeetup(meetupData) {
-    fetch(
-      "https://react-meetups-941e9-default-rtdb.europe-west1.firebasedatabase.app/meetups.json",
-      {
-        method: "POST",
-        body: JSON.stringify(meetupData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    ).then(() => {
+    fetch(`${firebaseURL}meetups.json`, {
+      method: "POST",
+      body: JSON.stringify(meetupData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
       history.replace("/");
     });
   }
